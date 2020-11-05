@@ -1,13 +1,17 @@
 import { Box, Text, Link, IconButton } from '@chakra-ui/core'
 import { FiYoutube } from 'react-icons/fi'
-import { parse, format } from 'date-fns'
+import { parseISO } from 'date-fns'
+import { utcToZonedTime, format } from 'date-fns-tz'
 
 const EventCard = ({ service }) => {
 
   const color = service.type === "Weekend" ? "gray.800" : "cyan.500"
   const title = service.type === "Weekend" ? "Weekend Service" : "Big Picture Show"
-  const parsedDate = parse(service.date, "yyyy-MM-dd", new Date())
-  const date = format(parsedDate, "MMM d")
+  const parsedDate = parseISO(service.datetime)
+  const timeZone = "America/Los_Angeles"
+  const day = format(parsedDate, "EEEE", { timeZone: timeZone })
+  const date = format(parsedDate, "MMM d", { timeZone: timeZone })
+  const time = format(parsedDate, "h:mmaaaaa", { timeZone: timeZone })
 
   return (
     <Box
@@ -22,7 +26,7 @@ const EventCard = ({ service }) => {
         {title}
       </Text>
       <Text mb={2} color="white" fontSize="md" fontWeight="medium">
-        {service.day}, {date} @ {service.time}
+        {`${day}, ${date} @ ${time}`}
       </Text>
       <Text color="white" fontSize="md" fontWeight="normal">
         Viewers: {service.viewerCount}

@@ -40,7 +40,7 @@ const cities = [
 
 const options = {
   headers: {
-    cookie: "livingas1=26Zr+rquhrnsu+UeiR2o1UoTph5fHhSgn5J6Icocuvbv3h7mLT/wr/9x/nqM4ryRJNY53eTslKA/wqjymQtHe+OQcjmhua394zI316tGoAUIiH7v7/hsq09ycbkQaLs3iyp8oKN2/oMAB8NBY6gS5xv6LjTccD8HzCpQIlbW7nn/WITncpem1v1/42mFNRBO5hn6xU+Br7IFVzs6Z+WnhyABDkJelhDNazBYohT8oMqSH+KIPCi+SSG8YTd5Nza/ym2tFLK8bgCX/est2mn3RfjLSvyL1ILj995P3MDexfdNLK/kEB4a8FVPjksgkgRTowF4DqrMoqcqEBqGe1EMHxj9ztktMMURE4bxJ3QGaqEZAeZanyrj2O1Xt5OBTTqH9uKPQuzbew4HCez3Py0jntGQMHJfUVDwkOHRA/GeQRkovL+AxUHNP4RlDNSIwH/LwpdDjJX5X7U="
+    cookie: process.env.RESI_COOKIE
   }
 }
 
@@ -48,7 +48,7 @@ const range_end = Date.now()
 const range_start = subDays(Date.now(), 7)
 
 const getServices = async () => {
-  const response = await axios(`https://central.resi.io/api/v3/customers/88db7d24-dfa5-4732-8c93-6d098cfa695f/webevents`, options)
+  const response = await axios(`https://central.resi.io/api/v3/customers/${process.env.RESI_ID}/webevents`, options)
   const services = response.data
     .filter(service => {
     const startTime = parseISO(service.startTime)
@@ -66,9 +66,7 @@ const getServices = async () => {
         uuid: service.uuid,
         name: service.name,
         type: service.name.includes("Picture") ? "BPS" : "Weekend",
-        date: format(startTime, 'yyyy-MM-dd'),
-        day: format(startTime, 'EEEE'),
-        time: format(startTime, 'h:mmaaaaa'),
+        datetime: startTime,
         youtube_url: youtube_url
       }
     })
@@ -84,13 +82,13 @@ const getViewers = (services) => {
       let offsetId = null
       while (offset) {
         if (firstRequest) {
-          const response = await axios(`https://central.resi.io/api/v3/customers/88db7d24-dfa5-4732-8c93-6d098cfa695f/webevents/${service.uuid}/export?max=500`, options)
+          const response = await axios(`https://central.resi.io/api/v3/customers/${process.env.RESI_ID}/webevents/${service.uuid}/export?max=500`, options)
           viewers = viewers.concat(response.data)
           firstRequest = false
           offset = response.data.length === 500 ? true : false
           offsetId = response.data.length === 500 ? response.data[response.data.length - 1].clientId : null
         } else {
-          const response = await axios(`https://central.resi.io/api/v3/customers/88db7d24-dfa5-4732-8c93-6d098cfa695f/webevents/${service.uuid}/export?max=500&offset=${offsetId}`, options)
+          const response = await axios(`https://central.resi.io/api/v3/customers/${process.env.RESI_ID}/webevents/${service.uuid}/export?max=500&offset=${offsetId}`, options)
           viewers = viewers.concat(response.data)
           offset = response.data.length === 500
             ? true
@@ -110,7 +108,7 @@ const getViewers = (services) => {
 
       let ytCount
       if (service.youtube_url) {
-        const ytResponse = await axios(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBsk8ovxyFdi51lyBZJZZa0JRwVwZs_tA0&part=statistics&id=${service.youtube_url}`)
+        const ytResponse = await axios(`https://www.googleapis.com/youtube/v3/videos?key=${process.env.GOOGLE_API_KEY}&part=statistics&id=${service.youtube_url}`)
         ytCount = ytResponse.data.items.length > 0 ? ytResponse.data.items[0].statistics.viewCount : 0
       } else {
         ytCount = 0
