@@ -1,0 +1,80 @@
+export const mockServices = [
+    {
+      uuid: "e2ef9339-7d51-45e5-a3cd-9c5fb560937f",
+      name: "Saturday 4:00pm Service - ONLINE",
+      type: "Weekend",
+      date: "2020-10-31",
+      day: "Saturday",
+      time: "4:00p",
+      youtube_url: "2ZPxi6AcxyI",
+      viewerCount: 210,
+      ocCount: 205,
+      ytCount: 189,
+      averageWatchTime: 50
+    },
+    {
+      uuid: "c304169b-9e81-47b5-8957-d4d52debdbae",
+      name: "Saturday 5:30pm Service - ONLINE",
+      type: "Weekend",
+      date: "2020-10-31",
+      day: "Saturday",
+      time: "5:30p",
+      youtube_url: "1HSIJlo0o_0",
+      viewerCount: 223,
+      ocCount: 232,
+      ytCount: 169,
+      averageWatchTime: 50
+    },
+    {
+      uuid: "ea8dbae2-0505-4857-95ef-f9832221a580",
+      name: "Sunday 08:30am Service - ONLINE",
+      type: "Weekend",
+      date: "2020-11-01",
+      day: "Sunday",
+      time: "8:30a",
+      youtube_url: "mKmp920c52I",
+      viewerCount: 1343,
+      ocCount: 1111,
+      ytCount: 1206,
+      averageWatchTime: 50
+    },
+    {
+      uuid: "cbb30f96-cc95-4f25-bf3e-368da13b2136",
+      name: "Sunday 10:00am Service - ONLINE",
+      type: "Weekend",
+      date: "2020-11-01",
+      day: "Sunday",
+      time: "10:00a",
+      youtube_url: "aB4woxuNBIc",
+      viewerCount: 817,
+      ocCount: 714,
+      ytCount: 556,
+      averageWatchTime: 48
+    },
+    {
+      uuid: "b1a7e532-f9bc-468a-975e-bdcdf3ba9a72",
+      name: "Sunday 11:30am Service - ONLINE",
+      type: "Weekend",
+      date: "2020-11-01",
+      day: "Sunday",
+      time: "11:30a",
+      youtube_url: "JC_8_HrzizI",
+      viewerCount: 487,
+      ocCount: 420,
+      ytCount: 330,
+      averageWatchTime: 57745
+    },
+    {
+      uuid: "726354f2-a42a-4a84-aba1-5437c7ac4ccb",
+      name: "Big Picture Show - ONLINE",
+      type: "BPS",
+      date: "2020-11-03",
+      day: "Tuesday",
+      time: "6:00p",
+      youtube_url: "1Kg3mYwvfEc",
+      viewerCount: 38,
+      ocCount: 40,
+      ytCount: 93,
+      averageWatchTime: 29
+    }
+  ]
