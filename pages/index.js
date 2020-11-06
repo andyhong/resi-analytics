@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Box, Flex, Heading, Text, Button, BUtton } from '@chakra-ui/core'
+import { Box, Flex, Heading, Text, Button, Link } from '@chakra-ui/core'
 import axios from 'axios'
 import { FaRunning } from 'react-icons/fa'
+import NextLink from 'next/link'
 
 import EventCard from '../components/EventCard'
 
@@ -22,10 +23,13 @@ const Home = () => {
         <Heading size="2xl" textAlign="center" letterSpacing="tighter" lineHeight="0.8">
           Mariners Church <br /> Livestream Analytics
         </Heading>
-        <Text mt={2} textAlign="center" letterSpacing="tight" fontSize="lg">
-          Welcome! This is an internal tool that can be used to pull livestream viewer data on demand. Clicking "Run" will query all services streamed within the <Text as="b">last 7 days</Text> and display them below.
+        <Text mt={4} textAlign="center" letterSpacing="tight" fontSize="lg">
+          Welcome! This is an internal tool that can be used to pull livestream viewer data on demand. Clicking "Run" will query all services streamed within the <Text as="b">last 7 days</Text> and display them below. If you need to reference past services that are outside of the 7 day range, <NextLink href="/services" passHref>
+            <Link fontWeight="bold">click here.</Link>
+          </NextLink>
         </Text>
         <Button my={4} size="lg" colorScheme="green" onClick={runReport} isLoading={isLoading} loadingText="Looking for services..." leftIcon={<FaRunning />}>Run</Button>
+
         <Flex direction="row" wrap="wrap" justify="center">
           {services && <>
             {services.map(service => (

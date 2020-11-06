@@ -7,7 +7,13 @@ export async function getServices() {
     return {
       uuid: service.uuid,
       name: service.name,
-      type: service.type
+      type: service.type,
+      datetime: service.datetime.toISOString(),
+      youtube_url: service.youtube_url,
+      viewerCount: service.viewerCount,
+      ocCount: service.ocCount,
+      ytCount: service.ytCount,
+      averageWatchTime: service.averageWatchTime
     }
   })
 }

@@ -1,7 +1,7 @@
 import { Box, Text, Link, IconButton } from '@chakra-ui/core'
 import { FiYoutube } from 'react-icons/fi'
 import { parseISO } from 'date-fns'
-import { utcToZonedTime, format } from 'date-fns-tz'
+import { format } from 'date-fns-tz'
 
 const EventCard = ({ service }) => {
 
@@ -20,6 +20,7 @@ const EventCard = ({ service }) => {
       w="20rem"
       bg={color}
       rounded="1rem"
+      shadow="md"
       textAlign="left"
     >
       <Text color="white" fontSize="2xl" fontWeight="medium">
