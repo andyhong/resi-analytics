@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { format, subDays, parseISO, addMinutes } from 'date-fns'
+import { subDays, parseISO, addMinutes } from 'date-fns'
 import { connectToDatabase } from '../../utils/mongo'
 
 const cities = [
