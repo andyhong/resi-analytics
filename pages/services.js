@@ -7,7 +7,6 @@ import { getServices } from '../utils/db'
 
 const Services = ({ services }) => {
   const formatted = services.map(service => {
-    console.log(service.datetime)
     const parsedDate = parseISO(service.datetime)
     const timeZone = "America/Los_Angeles"
     const day = format(parsedDate, "EEEE", { timeZone: timeZone })
@@ -52,7 +51,7 @@ const Services = ({ services }) => {
                 <Td>{service.viewerCount}</Td>
                 <Td>{service.ocCount}</Td>
                 <Td>{service.ytCount}</Td>
-                <Td textAlign="center">
+                <Td textAlign="center" fontWeight="medium">
                   <Link href={`https://youtube.com/watch?v=${service.youtube_url}`} isExternal>
                     Link
                   </Link>

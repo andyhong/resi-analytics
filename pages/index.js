@@ -25,7 +25,7 @@ const Home = () => {
         </Heading>
         <Text mt={4} textAlign="center" letterSpacing="tight" fontSize="lg">
           Welcome! This is an internal tool that can be used to pull livestream viewer data on demand. Clicking "Run" will query all services streamed within the <Text as="b">last 7 days</Text> and display them below. If you need to reference past services that are outside of the 7 day range, <NextLink href="/services" passHref>
-            <Link fontWeight="bold">click here.</Link>
+            <Link><Text as="u" fontWeight="medium">click here.</Text></Link>
           </NextLink>
         </Text>
         <Button my={4} size="lg" colorScheme="green" onClick={runReport} isLoading={isLoading} loadingText="Looking for services..." leftIcon={<FaRunning />}>Run</Button>

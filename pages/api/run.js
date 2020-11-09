@@ -54,7 +54,7 @@ const getServices = async () => {
     const startTime = parseISO(service.startTime)
     return startTime >= range_start
       && startTime <= range_end
-      && service.name.includes("ONLINE")
+      && (service.name.includes("ONLINE") || service.name.includes("1107"))
     })
     .sort((a, b) => parseISO(a.startTime) - parseISO(b.startTime))
     .map(service => {
