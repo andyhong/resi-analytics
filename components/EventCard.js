@@ -5,13 +5,16 @@ import { format } from 'date-fns-tz'
 
 const EventCard = ({ service }) => {
 
-  const color = service.type === "Weekend" ? "gray.800" : "cyan.500"
+  const color = service.type === "Weekend" ? "gray.800" : "cyan.400"
   const title = service.type === "Weekend" ? "Weekend Service" : "Big Picture Show"
   const parsedDate = parseISO(service.datetime)
   const timeZone = "America/Los_Angeles"
   const day = format(parsedDate, "EEEE", { timeZone: timeZone })
   const date = format(parsedDate, "MMM d", { timeZone: timeZone })
   const time = format(parsedDate, "h:mmaaaaa", { timeZone: timeZone })
+
+  const totalViews = service.viewerCount + service.ytCount
+  const ocResiViews = Math.round(service.ocCount / service.viewerCount * 100)
 
   return (
     <Box
@@ -29,14 +32,14 @@ const EventCard = ({ service }) => {
       <Text mb={2} color="white" fontSize="md" fontWeight="medium">
         {`${day}, ${date} @ ${time}`}
       </Text>
-      <Text color="white" fontSize="md" fontWeight="normal">
-        Viewers: {service.viewerCount}
+      <Text color="white" fontSize="md" fontWeight="bold">
+        Total: {totalViews}
       </Text>
       <Text color="white" fontSize="md" fontWeight="normal">
-        OC Viewers: {service.ocCount}
+        Resi: {`${service.viewerCount} (${ocResiViews}% in OC)`}
       </Text>
       <Text color="white" fontSize="md" fontWeight="normal">
-        Youtube Viewers: {service.ytCount}
+        YouTube: {service.ytCount}
       </Text>
       <Link href={`https://www.youtube.com/watch?v=${service.youtube_url}`} isExternal>
         <IconButton

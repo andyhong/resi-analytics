@@ -100,7 +100,7 @@ const getViewers = (services) => {
       }
 
       const actualViewers = viewers.filter(viewer => viewer.watchTimeMinutes > 5)
-      const ocViewers = viewers.filter(viewer => cities.includes(viewer.city))
+      const ocViewers = actualViewers.filter(viewer => cities.includes(viewer.city))
       const totalWatchTime = actualViewers.reduce((a, b) => {
         return { watchTimeMinutes:  a.watchTimeMinutes + b.watchTimeMinutes }
       })
