@@ -103,7 +103,7 @@ const getViewers = (services) => {
       const ocViewers = actualViewers.filter(viewer => cities.includes(viewer.city))
       const totalWatchTime = actualViewers.reduce((a, b) => {
         return { watchTimeMinutes:  a.watchTimeMinutes + b.watchTimeMinutes }
-      })
+      }, { watchTimeMinutes : 0 })
       const averageWatchTime = Math.round(totalWatchTime.watchTimeMinutes / actualViewers.length)
 
       let ytCount
